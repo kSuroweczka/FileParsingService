@@ -54,3 +54,9 @@ Prometheus is configured to collect metrics from the application. Metrics can be
 ## Docker Configuration
 
 The application is containerized using Docker for easy deployment and portability. Docker Compose is used to manage the application and Prometheus containers.
+
+## Access to the metrics
+
+1. Metrics are accessed by navigating to http://localhost:9090.
+2. Go to the Graph tab and try to find the metrics that are created (app related metrics).
+   ![img1.png](img/img1.png)
