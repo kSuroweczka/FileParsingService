@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload Summary</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='summary.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>File Upload Summary</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Number of rows:</td>
+            <td>{{ response.num_rows }}</td>
+          </tr>
+          <tr>
+            <td>Unique values:</td>
+            <td>{{ response.unique_values }}</td>
+          </tr>
+          {% if 'unique_characters' in response %}
+          <tr>
+            <td>Unique characters:</td>
+            <td>{{ response.unique_characters}}</td>
+          </tr>
+          {% endif %} {% if 'columns' in response %}
+          <tr>
+            <td>Columns:</td>
+            <td>{{ response.columns }}</td>
+          </tr>
+          {% endif %} {% if 'emails' in response %}
+          <tr>
+            <td>Emails:</td>
+            <td>
+              <ul>
+                {% for email in response.emails %}
+                <li>{{ email }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %} {% if 'phones' in response %}
+          <tr>
+            <td>Phone Numbers:</td>
+            <td>
+              <ul>
+                {% for phone in response.phones %}
+                <li>{{ phone }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %} {% if 'statistical_measures' in response %}
+          <tr>
+            <td>Statistical Measures:</td>
+            <td>
+              <ul>
+                {% for key, value in response.statistical_measures.items() %}
+                <li>{{ key }}: {{ value }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

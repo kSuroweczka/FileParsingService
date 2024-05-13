@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Upload</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the File Parsing Service</h1>
+      <p class="intro">Please choose a file to upload:</p>
+      <form
+        class="upload-form"
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input
+          id="file-upload"
+          type="file"
+          name="file"
+          accept=".csv,.json,.txt"
+        />
+        <label for="file-upload" class="upload-label">Choose File</label>
+        <div class="file-name" id="file-name">No file chosen</div>
+        <button type="submit" class="upload-btn">Upload</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("file-upload")
+        .addEventListener("change", function () {
+          var fileName = this.files[0].name;
+          var fileNameContainer = document.getElementById("file-name");
+          fileNameContainer.textContent = fileName;
+          fileNameContainer.classList.add("selected");
+        });
+    </script>
+  </body>
+</html>
